@@ -1,0 +1,26 @@
+@startuml
+package "UI" {
+  [Fee Entry Form]
+  [Report Dashboard]
+}
+
+package "Application Logic" {
+  [Fee Service]
+  [Report Service]
+}
+
+package "Data Access" {
+  [Payment Repository]
+  [Student Repository]
+}
+
+package "Reporting" {
+  [Summary Generator]
+}
+
+[Fee Entry Form] --> [Fee Service]
+[Report Dashboard] --> [Report Service]
+[Fee Service] --> [Payment Repository]
+[Report Service] --> [Summary Generator]
+[Summary Generator] --> [Student Repository]
+@enduml

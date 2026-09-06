@@ -1,0 +1,31 @@
+@startuml
+node "Office Laptop" {
+  [Fee Intake App]
+  database "Local SQLite"
+}
+
+node "Office PC" {
+  [Consolidation App]
+  database "Master DB"
+}
+
+node "Staff Phone" {
+  [Mobile Intake App]
+  database "Local Cache"
+}
+
+node "Printer" {
+  [Receipt Output]
+}
+
+[Fee Intake App] ..> [Consolidation App] : USB weekly or 4G when available
+[Mobile Intake App] ..> [Fee Intake App] : Bluetooth or sync when signal returns
+[Fee Intake App] ..> [Receipt Output] : USB/local print
+
+note on link
+  While link is DOWN:
+  - Laptop still records fees
+  - Phone still records intake
+  - Reports delayed until sync
+end note
+@enduml
